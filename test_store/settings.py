@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'other',
     'login',
     'practice1_store',
+    'store',
 ]
 
 MIDDLEWARE = [
