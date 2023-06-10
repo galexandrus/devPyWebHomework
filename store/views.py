@@ -9,8 +9,94 @@ class CartView(View):
 
 
 class ProductSingleView(View):
-    def get(self, request):
-        return render(request, 'store/product-single.html')
+    def get(self, request, id):
+        data = {
+            1: {
+                'name': 'Bell Pepper',
+                'description': "Sweet color pepper",
+                'price': 120.00,
+                'rating': 5.0,
+                'url': 'store/images/product-1.jpg',
+            },
+            2: {
+                'name': 'Strawberry',
+                'description': "Fragrant sweet strawberry",
+                'price': 120.00,
+                'rating': 5.0,
+                'url': 'store/images/product-2.jpg',
+            },
+            3: {
+                'name': 'Green Beans',
+                'description': "Healthy delicious beans",
+                'price': 120.00,
+                'rating': 5.0,
+                'url': 'store/images/product-3.jpg',
+            },
+            4: {
+                'name': 'Purple Cabbage',
+                'description': "Deep purple cabbage",
+                'price': 120.00,
+                'rating': 5.0,
+                'url': 'store/images/product-4.jpg',
+            },
+            5: {
+                'name': 'Tomato',
+                'description': "Red and fragrant tomato",
+                'price': 120.00,
+                'rating': 5.0,
+                'url': 'store/images/product-5.jpg',
+            },
+            6: {
+                'name': 'Brocolli',
+                'description': "Round and healthy brocolli",
+                'price': 120.00,
+                'rating': 5.0,
+                'url': 'store/images/product-6.jpg',
+            },
+            7: {
+                'name': 'Carrots',
+                'description': "Red and tasty carrots",
+                'price': 120.00,
+                'rating': 5.0,
+                'url': 'store/images/product-7.jpg',
+            },
+            8: {
+                'name': 'Fruit Juice',
+                'description': "Natural fruit juice",
+                'price': 120.00,
+                'rating': 5.0,
+                'url': 'store/images/product-8.jpg',
+            },
+            9: {
+                'name': 'Onion',
+                'description': "Just onion",
+                'price': 120.00,
+                'rating': 5.0,
+                'url': 'store/images/product-9.jpg',
+            },
+            10: {
+                'name': 'Apple',
+                'description': "Sweet red, green and yellow apples",
+                'price': 120.00,
+                'rating': 5.0,
+                'url': 'store/images/product-10.jpg',
+            },
+            11: {
+                'name': 'Garlic',
+                'description': "Fresh and fragrant garlic",
+                'price': 120.00,
+                'rating': 5.0,
+                'url': 'store/images/product-11.jpg',
+            },
+            12: {
+                'name': 'Chilli',
+                'description': "Spicy chilli",
+                'price': 120.00,
+                'rating': 5.0,
+                'url': 'store/images/product-12.jpg',
+            },
+        }
+        return render(request, 'store/product-single.html', context=data[id])
 
 
 class ShopView(View):
@@ -22,6 +108,7 @@ class ShopView(View):
                     'discount': 25,
                     'price_before': 120.00,
                     'price_after': 90.00,
+                    'id': 1,
                     'url': 'store/images/product-1.jpg',
                 },
                 {
@@ -29,6 +116,7 @@ class ShopView(View):
                     'discount': None,
                     'price_before': 120.00,
                     'price_after': 120.00,
+                    'id': 2,
                     'url': 'store/images/product-2.jpg',
                 },
                 {
@@ -36,6 +124,7 @@ class ShopView(View):
                     'discount': None,
                     'price_before': 120.00,
                     'price_after': 120.00,
+                    'id': 3,
                     'url': 'store/images/product-3.jpg',
                 },
                 {
@@ -43,6 +132,7 @@ class ShopView(View):
                     'discount': None,
                     'price_before': 120.00,
                     'price_after': 120.00,
+                    'id': 4,
                     'url': 'store/images/product-4.jpg',
                 },
                 {
@@ -50,6 +140,7 @@ class ShopView(View):
                     'discount': None,
                     'price_before': 120.00,
                     'price_after': 120.00,
+                    'id': 5,
                     'url': 'store/images/product-5.jpg',
                 },
                 {
@@ -57,6 +148,7 @@ class ShopView(View):
                     'discount': None,
                     'price_before': 120.00,
                     'price_after': 120.00,
+                    'id': 6,
                     'url': 'store/images/product-6.jpg',
                 },
                 {
@@ -64,6 +156,7 @@ class ShopView(View):
                     'discount': None,
                     'price_before': 120.00,
                     'price_after': 120.00,
+                    'id': 7,
                     'url': 'store/images/product-7.jpg',
                 },
                 {
@@ -71,6 +164,7 @@ class ShopView(View):
                     'discount': None,
                     'price_before': 120.00,
                     'price_after': 120.00,
+                    'id': 8,
                     'url': 'store/images/product-8.jpg',
                 },
                 {
@@ -78,6 +172,7 @@ class ShopView(View):
                     'discount': None,
                     'price_before': 120.00,
                     'price_after': 120.00,
+                    'id': 9,
                     'url': 'store/images/product-9.jpg',
                 },
                 {
@@ -85,6 +180,7 @@ class ShopView(View):
                     'discount': None,
                     'price_before': 120.00,
                     'price_after': 120.00,
+                    'id': 10,
                     'url': 'store/images/product-10.jpg',
                 },
                 {
@@ -92,6 +188,7 @@ class ShopView(View):
                     'discount': None,
                     'price_before': 120.00,
                     'price_after': 120.00,
+                    'id': 11,
                     'url': 'store/images/product-11.jpg',
                 },
                 {
@@ -99,6 +196,7 @@ class ShopView(View):
                     'discount': 20,
                     'price_before': 120.00,
                     'price_after': 96.00,
+                    'id': 12,
                     'url': 'store/images/product-12.jpg',
                 },
             ]
