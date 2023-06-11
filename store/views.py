@@ -54,7 +54,7 @@ class ProductSingleView(View):
                 'url': 'store/images/product-6.jpg',
             },
             7: {
-                'name': 'Carrots',
+                'name': 'Carrot',
                 'description': "Red and tasty carrots",
                 'price': 120.00,
                 'rating': 5.0,
@@ -152,7 +152,7 @@ class ShopView(View):
                     'url': 'store/images/product-6.jpg',
                 },
                 {
-                    'name': 'Carrots',
+                    'name': 'Carrot',
                     'discount': None,
                     'price_before': 120.00,
                     'price_after': 120.00,
