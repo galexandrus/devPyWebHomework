@@ -14,93 +14,104 @@ class CartView(View):
 
 class ProductSingleView(View):
     def get(self, request, id):
-        data = {
-            1: {
-                'name': 'Bell Pepper',
-                'description': "Sweet color pepper",
-                'price': 120.00,
-                'rating': 5.0,
-                'url': 'store/images/product-1.jpg',
-            },
-            2: {
-                'name': 'Strawberry',
-                'description': "Fragrant sweet strawberry",
-                'price': 120.00,
-                'rating': 5.0,
-                'url': 'store/images/product-2.jpg',
-            },
-            3: {
-                'name': 'Green Beans',
-                'description': "Healthy delicious beans",
-                'price': 120.00,
-                'rating': 5.0,
-                'url': 'store/images/product-3.jpg',
-            },
-            4: {
-                'name': 'Purple Cabbage',
-                'description': "Deep purple cabbage",
-                'price': 120.00,
-                'rating': 5.0,
-                'url': 'store/images/product-4.jpg',
-            },
-            5: {
-                'name': 'Tomato',
-                'description': "Red and fragrant tomato",
-                'price': 120.00,
-                'rating': 5.0,
-                'url': 'store/images/product-5.jpg',
-            },
-            6: {
-                'name': 'Brocolli',
-                'description': "Round and healthy brocolli",
-                'price': 120.00,
-                'rating': 5.0,
-                'url': 'store/images/product-6.jpg',
-            },
-            7: {
-                'name': 'Carrot',
-                'description': "Red and tasty carrots",
-                'price': 120.00,
-                'rating': 5.0,
-                'url': 'store/images/product-7.jpg',
-            },
-            8: {
-                'name': 'Fruit Juice',
-                'description': "Natural fruit juice",
-                'price': 120.00,
-                'rating': 5.0,
-                'url': 'store/images/product-8.jpg',
-            },
-            9: {
-                'name': 'Onion',
-                'description': "Just onion",
-                'price': 120.00,
-                'rating': 5.0,
-                'url': 'store/images/product-9.jpg',
-            },
-            10: {
-                'name': 'Apple',
-                'description': "Sweet red, green and yellow apples",
-                'price': 120.00,
-                'rating': 5.0,
-                'url': 'store/images/product-10.jpg',
-            },
-            11: {
-                'name': 'Garlic',
-                'description': "Fresh and fragrant garlic",
-                'price': 120.00,
-                'rating': 5.0,
-                'url': 'store/images/product-11.jpg',
-            },
-            12: {
-                'name': 'Chilli',
-                'description': "Spicy chilli",
-                'price': 120.00,
-                'rating': 5.0,
-                'url': 'store/images/product-12.jpg',
-            },
-        }
-        return render(request, 'store/product-single.html', context=data[id])
+        data = Product.objects.get(id=id)
+        return render(request,
+                      'store/product-single.html',
+                      context={
+                          'name': data.name,
+                          'description': data.description,
+                          'price': data.price,
+                          'rating': 5.0,
+                          'url': data.image.url,
+                      })
+
+        # data = {
+        #     1: {
+        #         'name': 'Bell Pepper',
+        #         'description': "Sweet color pepper",
+        #         'price': 120.00,
+        #         'rating': 5.0,
+        #         'url': 'store/images/product-1.jpg',
+        #     },
+        #     2: {
+        #         'name': 'Strawberry',
+        #         'description': "Fragrant sweet strawberry",
+        #         'price': 120.00,
+        #         'rating': 5.0,
+        #         'url': 'store/images/product-2.jpg',
+        #     },
+        #     3: {
+        #         'name': 'Green Beans',
+        #         'description': "Healthy delicious beans",
+        #         'price': 120.00,
+        #         'rating': 5.0,
+        #         'url': 'store/images/product-3.jpg',
+        #     },
+        #     4: {
+        #         'name': 'Purple Cabbage',
+        #         'description': "Deep purple cabbage",
+        #         'price': 120.00,
+        #         'rating': 5.0,
+        #         'url': 'store/images/product-4.jpg',
+        #     },
+        #     5: {
+        #         'name': 'Tomato',
+        #         'description': "Red and fragrant tomato",
+        #         'price': 120.00,
+        #         'rating': 5.0,
+        #         'url': 'store/images/product-5.jpg',
+        #     },
+        #     6: {
+        #         'name': 'Brocolli',
+        #         'description': "Round and healthy brocolli",
+        #         'price': 120.00,
+        #         'rating': 5.0,
+        #         'url': 'store/images/product-6.jpg',
+        #     },
+        #     7: {
+        #         'name': 'Carrot',
+        #         'description': "Red and tasty carrots",
+        #         'price': 120.00,
+        #         'rating': 5.0,
+        #         'url': 'store/images/product-7.jpg',
+        #     },
+        #     8: {
+        #         'name': 'Fruit Juice',
+        #         'description': "Natural fruit juice",
+        #         'price': 120.00,
+        #         'rating': 5.0,
+        #         'url': 'store/images/product-8.jpg',
+        #     },
+        #     9: {
+        #         'name': 'Onion',
+        #         'description': "Just onion",
+        #         'price': 120.00,
+        #         'rating': 5.0,
+        #         'url': 'store/images/product-9.jpg',
+        #     },
+        #     10: {
+        #         'name': 'Apple',
+        #         'description': "Sweet red, green and yellow apples",
+        #         'price': 120.00,
+        #         'rating': 5.0,
+        #         'url': 'store/images/product-10.jpg',
+        #     },
+        #     11: {
+        #         'name': 'Garlic',
+        #         'description': "Fresh and fragrant garlic",
+        #         'price': 120.00,
+        #         'rating': 5.0,
+        #         'url': 'store/images/product-11.jpg',
+        #     },
+        #     12: {
+        #         'name': 'Chilli',
+        #         'description': "Spicy chilli",
+        #         'price': 120.00,
+        #         'rating': 5.0,
+        #         'url': 'store/images/product-12.jpg',
+        #     },
+        # }
+        # return render(request, 'store/product-single.html', context=data[id])
 
 
 class ShopView(View):
