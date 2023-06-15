@@ -107,19 +107,18 @@ class ShopView(View):
     def get(self, request):
         # Request for all actual discounts
         discount_value = Case(
-            When(
-                discount_value_gte=0,
-                discount_date_begin_lte=timezone.now(),
-                discount_date_end_gte=timezone.now(),
-                then=F('discount_value')
-            ),
+            When(discount__value__gte=0,
+                 discount__date_begin__lte=timezone.now(),
+                 discount__date_end__gte=timezone.now(),
+                 then=F('discount__value')
+                 ),
             default=0,
             output_field=DecimalField(max_digits=10, decimal_places=2)
         )
 
         # Request for calculate price with discount
         price_with_discount = ExpressionWrapper(
-            F('price') * (100.0 - F('discount_value')) / 100.0,
+            F('price') * (100.0 - F('discount__value')) / 100.0,
             output_field=DecimalField(max_digits=10, decimal_places=2)
         )
 
