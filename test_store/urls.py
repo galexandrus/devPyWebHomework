@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from store.urls import router as cart_router
 
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),
@@ -24,4 +25,5 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('practice1_store/', include('practice1_store.urls')),
     path('store/', include('store.urls')),
+    path('api/', include(cart_router.urls)),
 ]
