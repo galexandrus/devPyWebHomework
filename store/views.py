@@ -1,12 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.db.models import OuterRef, Subquery, ExpressionWrapper, DecimalField, Case, When, F
 from django.utils import timezone
-from .models import Product, Discount, Cart
+from .models import Product, Discount, Cart, Wishlist
 from rest_framework import viewsets, response
 from rest_framework.permissions import IsAuthenticated
 from .serializers import CartSerializer
-from django.shortcuts import get_object_or_404
+
+
+class WishlistView(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            data = Wishlist.objects.filter(user=request.user)
+            return render(request, 'store/wishlist.html', {"data": data})
+        return redirect('login:login')
 
 
 class CartViewSet(viewsets.ModelViewSet):
