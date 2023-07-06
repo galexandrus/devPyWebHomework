@@ -37,8 +37,9 @@ class CreateAccountView(View):
             password = form.cleaned_data.get('password1')
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
-            login(request, user)
-            return redirect('store:shop')
+            # login(request, user)
+            # return redirect('store:shop')
+            return redirect('login:login')
         return render(request, "login/create_account.html",
                       context={'errors': form.errors})
 

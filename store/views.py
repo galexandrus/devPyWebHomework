@@ -6,6 +6,7 @@ from .models import Product, Discount, Cart, Wishlist
 from rest_framework import viewsets, response
 from rest_framework.permissions import IsAuthenticated
 from .serializers import CartSerializer, WishlistSerializer
+import requests
 
 
 class WishlistViewSet(viewsets.ModelViewSet):
@@ -23,6 +24,25 @@ class WishlistView(View):
             data = Wishlist.objects.filter(user=request.user)
             return render(request, 'store/wishlist.html', {"data": data})
         return redirect('login:login')
+
+
+class RemoveFromWishlist(View):
+    def get(self, request, product_id):
+        Wishlist.objects.filter(user=request.user, product=product_id).delete()
+        return redirect('store:wishlist')
+
+
+class AddToWishlist(View):
+    def get(self, request, product_id):
+        data = {"user": request.user.id, "product": product_id}
+        # current_wishlist = requests.get("http://localhost:8000/api/wishlist/",
+        #                                 auth=(request.user.username, request.user.password)).json()
+        # current_wishlist_products = [wishobj['product'] for wishobj in current_wishlist]
+        # if product_id not in current_wishlist_products:
+        requests.post("http://localhost:8000/api/wishlist/",
+                      auth=("admin", 1234),
+                      json=data)
+        return redirect('store:shop')
 
 
 class CartViewSet(viewsets.ModelViewSet):
