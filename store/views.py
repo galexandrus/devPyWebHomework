@@ -34,15 +34,16 @@ class RemoveFromWishlist(View):
 
 class AddToWishlist(View):
     def get(self, request, product_id):
-        data = {"user": request.user.id, "product": product_id}
-        # current_wishlist = requests.get("http://localhost:8000/api/wishlist/",
-        #                                 auth=(request.user.username, request.user.password)).json()
-        # current_wishlist_products = [wishobj['product'] for wishobj in current_wishlist]
-        # if product_id not in current_wishlist_products:
-        requests.post("http://localhost:8000/api/wishlist/",
-                      auth=("admin", 1234),
-                      json=data)
-        return redirect('store:shop')
+        if request.user.is_authenticated:
+            product = get_object_or_404(Product, id=product_id)
+            wishlist_item = Wishlist.objects.filter(user=request.user, product=product)
+            if wishlist_item.exists():
+                return redirect('store:shop')
+            else:
+                wishlist_item = Wishlist(user=request.user, product=product)
+                wishlist_item.save()
+                return redirect('store:shop')
+        return redirect('login:login')
 
 
 class CartViewSet(viewsets.ModelViewSet):
